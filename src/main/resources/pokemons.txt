@@ -1,0 +1,10 @@
+1 Venusaur Grass Poison 200 "Poison Powder" "Jungle Hammer" 60 90 false 10 0 0
+2 Charizard Fire Flying 250 "Wing Strike" "Crimson storm" 70 150 false 0 0 0
+3 Blastoise Water null 180 "Aqua bomb" "Quick turn" 120 30 false 0 0 0
+4 Pikachu Electric null 180 "Charge" "Thunderbolt" 0 100 false 50 0 0
+5 Machamp Fighting null 220 "Destructive revenge" "earthquake" 50 140 false 10 0 0 
+6 Gengar Ghost Poison 210 "Dark Slumber" "Pain Explosion" 60 190 false 20 0 0
+7 Gyarados Water Flying 240 "Waterfall" "Draco disaster" 70 100 false 0 50 0
+8 Snorlax Normal null 220 "Swallow" "Collapse" 60 170 false 0 0 60
+9 Metagross Steel Psychic 220 "Bullet Fist" "SyncroHammer" 20 60 false 20 90 0 
+10 Umbreon Dark null 200 "Mean Look" "Moonlight Blade" 30 80 false 0 80 0
