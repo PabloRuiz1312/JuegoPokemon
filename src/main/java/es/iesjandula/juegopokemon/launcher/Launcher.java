@@ -4,25 +4,26 @@
  */
 package es.iesjandula.juegopokemon.launcher;
 
-import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
+import es.iesjandula.juegopokemon.windows.SelectionWindow;
 
 /**
  *
  * @author Pablo Ruiz Canovas
  */
 public class Launcher extends javax.swing.JFrame {
-    /**Creates a background*/
-    PokemonBackGround pokeBG = new PokemonBackGround();
+    private ImageIcon mainIcon = null ;
     /**
      * Creates new form Launcher
      */
     public Launcher() 
     {
-        this.setContentPane(pokeBG);
         initComponents();
+        this.mainIcon = new ImageIcon("src/main/resources/imagenes/logoPokemon.png");
+        this.menuPrincipal.setIcon(mainIcon);
     }
 
     /**
@@ -34,21 +35,67 @@ public class Launcher extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuPrincipal = new javax.swing.JLabel();
+        playButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        playButton.setLabel("Jugar");
+        playButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                playButtonMouseClicked(evt);
+            }
+        });
+
+        jButton1.setText("Cargar partida");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(227, 227, 227)
+                        .addComponent(menuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(380, 380, 380)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(menuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+       
+        
+    }//GEN-LAST:event_formWindowActivated
+
+    private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
+       SelectionWindow window = new SelectionWindow();
+       window.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_playButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -86,19 +133,8 @@ public class Launcher extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel menuPrincipal;
+    private javax.swing.JButton playButton;
     // End of variables declaration//GEN-END:variables
-    public class PokemonBackGround extends JPanel
-    {
-        /**Background image for the launcher */
-        private Image image;
-        
-        @Override
-        public void paint (Graphics g)
-        {
-            this.image = new ImageIcon(getClass().getResource("\\src\\main\\resources\\imagenes\\launcherBackGround.png")).getImage();
-            g.drawImage(image,0,0,getWidth(),getHeight(),this);
-            setOpaque(false);
-            super.paint(g);
-        }
-    }
-}
+ }
