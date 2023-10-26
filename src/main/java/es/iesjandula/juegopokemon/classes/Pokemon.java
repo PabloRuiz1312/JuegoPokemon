@@ -35,6 +35,8 @@ public class Pokemon implements Serializable
     private int healSimpleAttack;
     /**The special attack heals the pokemon */
     private int healSpecialAttack;
+    /**Image url*/
+    private String imageUrl;
     
     /**
      * Complete constructor
@@ -53,7 +55,7 @@ public class Pokemon implements Serializable
      * @param healSimpleAttack
      * @param healSpecialAttack 
      */
-    public Pokemon(int id, String name, String type1, String type2, int hp, String simpleAttack, String specialAttack, int simpleAttackDmg, int specialAttackDmg, boolean legendary, int incDamage1, int incDamage2, int healSimpleAttack, int healSpecialAttack) {
+    public Pokemon(int id, String name, String type1, String type2, int hp, String simpleAttack, String specialAttack, int simpleAttackDmg, int specialAttackDmg, boolean legendary, int incDamage1, int incDamage2, int healSimpleAttack, int healSpecialAttack, String imageUrl) {
         this.id = id;
         this.name = name;
         this.type1 = type1;
@@ -68,6 +70,7 @@ public class Pokemon implements Serializable
         this.incDamage2 = incDamage2;
         this.healSimpleAttack = healSimpleAttack;
         this.healSpecialAttack = healSpecialAttack;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() 
@@ -210,6 +213,15 @@ public class Pokemon implements Serializable
         this.healSpecialAttack = healSpecialAttack;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    
+    
     @Override
     public String toString() 
     {
