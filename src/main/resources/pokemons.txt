@@ -1,40 +1,40 @@
-1 Venusaur Grass Poison 200 "Poison Powder" "Jungle Hammer" 60 90 false 10 0 0 0
-2 Charizard Fire Flying 250 "Wing Strike" "Crimson storm" 70 150 false 0 0 0 0
-3 Blastoise Water null 180 "Aqua bomb" "Quick turn" 120 30 false 0 0 0 0
-4 Pikachu Electric null 180 "Charge" "Thunderbolt" 0 100 false 50 0 0 0
-5 Machamp Fighting null 220 "Destructive revenge" "earthquake" 50 140 false 10 0 0 0
-6 Gengar Ghost Poison 210 "Dark Slumber" "Pain Explosion" 60 190 false 20 0 0 0
-7 Gyarados Water Flying 240 "Waterfall" "Draco disaster" 70 100 false 0 50 0 0
-8 Snorlax Normal null 220 "Swallow" "Collapse" 60 170 false 0 0 60 0
-9 Metagross Steel Psychic 220 "Bullet Fist" "SyncroHammer" 20 60 false 20 90 0 0
-10 Umbreon Dark null 200 "Mean Look" "Moonlight Blade" 30 80 false 0 80 0 0
-11 Arcanine Fire Rock 230 "Bullet Rock" 90 false 30 0 0 0
-12 Articuno Flying Psychic 210 "Psychic Ray" 110 true 0 0 0 0
-13 Braviary Flying Normal 130 "clutch" "Aerial descent" 30 140 false 0 0 0 0
-14 Cobalion Steel Fighting 180 "Righteous Edge" "Steel Bullet" 30 100 true 0 0 0 0
-15 Druddigon Dragon null 120 "revenge" "Dragon Claw" 40 120 false 0 0 0 0
-16 Entei Fire null 180 "Igneous Fang" "Colossal Flame" 30 90 true 0 0 0 0
-17 Ferrothorn Steel Grass 120 "Guard Pressure" "Throwing Spine Ball" 20 80 false 20 0 0 0
-18 Forretress Steel Bug 120 "Continuous Rotating" "Rolling Shell" 50 90 false 50 0 0 0
-19 Gallade Psychic Fighting 220 "Ascending Sword" "Destroyer Strike" 20 130 false 50 0 0 0
-20 Gardevoir Psychic Fairy 170 "Lightning Connector" "Blade Bright" 30 120 false 70 0 0 0
-21 HooH Fire Flying 190 "Sacred Fire" "Ardor Phoenix" 50 180 true 0 0 0 0
-22 Houndoom Fire Dark 210 "Scorching Flame" "Vengeful Flame" 20 100 false 0 0 0 0
-23 Kyogre Water null 200 "Colossal Tsunami" "Swirl Titan" 120 150 true 0 0 0 0
-24 Kyurem Dragon Ice 180 "Slash" "Black Ballista" 60 200 true 0 0 0 0
-25 Lapras Water Ice 190 "Ice Burn" "Ice Beam" 160 100 false 0 0 0 0
-26 Latios Dragon Psychic 170 "Fast raid" "Light Pulse" 40 110 true 0 0 0 0
-27 Lugia Psychic Flying 190 "psychic" "pelagic slash" 30 170 true 30 0 0 0
-28 Magnezone Steel Electric 170 "magnetic repulsion" "thunder" 50 180 false 0 0 0 0
-29 Moltres Fire Dark 220 "Scorching Aura" 190 true 0 0 0 0
-30 Palkia Water Dragon 220 "Hydro Break" 200 true 0 0 0 0 
-31 Rayquaza Flying Dragon 210 "Dragon Pulse" "Spiral Explosion" 80 120 true 0 0 0 0 
-32 Scisor Steel Bug 210 "Steel Wing" "Tackle" 80 100 false 0 0 0 0
-33 Suicune Water null 180 "Healing Stream" "Oceanic Stalactic" 120 150 true 0 0 0 0
-34 Toucannon Normal Flying 140 "Igneous Peak" "Gigantoucañon" 40 160 false 0 0 0 0
-35 Tyranitar Rock Dark 180 "hammering" "breaking ground" 60 130 false 0 0 0 0
-36 Volcanion Water Fire 180 "Volcanic Heat" 130 true 0 0 0 0
-37 Xerneas Fairy null 170 "Break through" "burst X" 60 140 true 0 0 0 0
-38 Yveltal Dark Flying 180 "Absorb Vitality" "Sonic Evil" 20 100 true 0 0 0 0
-39 Garchomp Dragon Ground 240 "Dragon pulse" "Shred" 80 150 false 0 0 0 0
-40 Greninja Dark Water 170 "Sharpshooting" "aqua blast" 30 120 false 0 0 0 0
+1 Venusaur Grass Poison 200 "Poison Powder" "Jungle Hammer" 60 90 false 10 0 0 0 src/main/resources/imagenes/venusaur.png
+2 Charizard Fire Flying 250 "Wing Strike" "Crimson storm" 70 150 false 0 0 0 0 src/main/resources/imagenes/charizard.png
+3 Blastoise Water null 180 "Aqua bomb" "Quick turn" 120 30 false 0 0 0 0 src/main/resources/imagenes/blastoise.png
+4 Pikachu Electric null 180 "Charge" "Thunderbolt" 0 100 false 50 0 0 0 src/main/resources/imagenes/pikachu.png
+5 Machamp Fighting null 220 "Destructive revenge" "earthquake" 50 140 false 10 0 0 0 src/main/resources/imagenes/machamp.png
+6 Gengar Ghost Poison 210 "Dark Slumber" "Pain Explosion" 60 190 false 20 0 0 0 src/main/resources/imagenes/gengar.png
+7 Gyarados Water Flying 240 "Waterfall" "Draco disaster" 70 100 false 0 50 0 0 src/main/resources/imagenes/gyarados.png
+8 Snorlax Normal null 220 "Swallow" "Collapse" 60 170 false 0 0 60 0 src/main/resources/imagenes/snorlax.png
+9 Metagross Steel Psychic 220 "Bullet Fist" "SyncroHammer" 20 60 false 20 90 0 0 src/main/resources/imagenes/metagross.png
+10 Umbreon Dark null 200 "Mean Look" "Moonlight Blade" 30 80 false 0 80 0 0 src/main/resources/imagenes/umbreon.png
+11 Arcanine Fire Rock 230 "Bullet Rock" "Shock Healer" 90 0 false 30 0 0 50 src/main/resources/imagenes/arcaine.PNG
+12 Articuno Flying Psychic 210 "Psychic Ray" "Absolute Freeze" 110 180 true 0 30 0 0 src/main/resources/imagenes/articuno.png 
+13 Braviary Flying Normal 130 "clutch" "Aerial descent" 30 140 false 0 0 0 0 src/main/resources/imagenes/braviary.png
+14 Cobalion Steel Fighting 180 "Righteous Edge" "Steel Bullet" 30 100 true 0 50 30 0 src/main/resources/imagenes/cobalion.png
+15 Druddigon Dragon null 120 "revenge" "Dragon Claw" 40 120 false 0 0 0 0 src/main/resources/imagenes/druddigon.PNG
+16 Entei Fire null 180 "Igneous Fang" "Colossal Flame" 30 90 true 30 100 0 0 src/main/resources/imagenes/entei.png  
+17 Ferrothorn Steel Grass 120 "Guard Pressure" "Throwing Spine Ball" 20 80 false 20 0 0 0 src/main/resources/imagenes/ferrothorn.PNG
+18 Forretress Steel Bug 120 "Continuous Rotating" "Rolling Shell" 50 90 false 50 0 0 0 src/main/resources/imagenes/forretres.PNG
+19 Gallade Psychic Fighting 220 "Ascending Sword" "Destroyer Strike" 20 130 false 50 0 0 0 src/main/resources/imagenes/gallade.PNG
+20 Gardevoir Psychic Fairy 170 "Lightning Connector" "Blade Bright" 30 120 false 70 0 0 0 src/main/resources/imagenes/gardevoir.PNG
+21 HooH Fire Flying 190 "Sacred Fire" "Ardor Phoenix" 50 180 true 50 0 0 0 src/main/resources/imagenes/Ho-Oh.png
+22 Houndoom Fire Dark 210 "Scorching Flame" "Vengeful Flame" 20 100 false 20 100 0 0 src/main/resources/imagenes/houndoom.png
+23 Kyogre Water null 200 "Colossal Tsunami" "Swirl Titan" 120 150 true 0 0 0 0 src/main/resources/imagenes/kyogre.PNG
+24 Kyurem Dragon Ice 180 "Slash" "Black Ballista" 60 200 true 0 0 0 0 src/main/resources/imagenes/kyurem.png
+25 Lapras Water Ice 190 "Ice Burn" "Ice Beam" 160 100 false 0 0 0 0 src/main/resources/imagenes/lapras.png
+26 Latios Dragon Psychic 170 "Fast raid" "Light Pulse" 40 110 true 0 0 0 0 src/main/resources/imagenes/latios.PNG
+27 Lugia Psychic Flying 190 "psychic" "pelagic slash" 30 170 true 30 0 0 0 src/main/resources/imagenes/lugia.PNG
+28 Magnezone Steel Electric 170 "magnetic repulsion" "thunder" 50 180 false 0 0 0 0 src/main/resources/imagenes/magnezone.png
+29 Moltres Fire Dark 220 "Scorching Aura" "Flame Wings" 190 80 true 30 0 20 100 src/main/resources/imagenes/moltres.png 
+30 Palkia Water Dragon 220 "Hydro Break" "Rule the Region" 200 0 true 0 0 0 150 src/main/resources/imagenes/palkia.PNG
+31 Rayquaza Flying Dragon 210 "Dragon Pulse" "Spiral Explosion" 80 120 true 20 80 0 0 src/main/resources/imagenes/rayquaza.png
+32 Scisor Steel Bug 210 "Steel Wing" "Tackle" 80 100 false 0 0 0 0 src/main/resources/imagenes/scisor.png
+33 Suicune Water null 180 "Healing Stream" "Oceanic Stalactic" 120 150 true 0 50 30 0 src/main/resources/imagenes/suicune.png 
+34 Toucannon Normal Flying 140 "Igneous Peak" "Gigantoucañon" 40 160 false 0 0 0 0 src/main/resources/imagenes/toucannon.png
+35 Tyranitar Rock Dark 180 "hammering" "breaking ground" 60 130 false 0 0 0 0 src/main/resources/imagenes/tyranitar.png
+36 Volcanion Water Fire 180 "Volcanic Heat" "Hydropump" 130 180 true 0 0 0 0 src/main/resources/imagenes/volcanion.png 
+37 Xerneas Fairy null 170 "Break through" "burst X" 60 140 true 0 80 0 0 src/main/resources/imagenes/xerneas.PNG
+38 Yveltal Dark Flying 180 "Absorb Vitality" "Sonic Evil" 20 100 true 0 100 20 0 src/main/resources/imagenes/yvetal.PNG
+39 Garchomp Dragon Ground 240 "Dragon pulse" "Shred" 80 150 false 0 0 0 0 src/main/resources/imagenes/garchomp.png
+40 Greninja Dark Water 170 "Sharpshooting" "aqua blast" 30 120 false 30 0 0 0 src/main/resources/imagenes/greninja.png
