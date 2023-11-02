@@ -6,6 +6,7 @@ package es.iesjandula.juegopokemon.windows;
 
 import es.iesjandula.juegopokemon.classes.LecturaPokemons;
 import es.iesjandula.juegopokemon.classes.Pokemon;
+import es.iesjandula.juegopokemon.classes.Starter;
 import es.iesjandula.juegopokemon.exception.PokemonException;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -20,19 +21,32 @@ public class SelectionWindow extends javax.swing.JFrame {
     private final ImageIcon separator = new ImageIcon("src/main/resources/imagenes/separador.png");
     private final ImageIcon imagenBotonSeleccionIzquierda = new ImageIcon("src/main/resources/imagenesWidgets/flechaSeleccionIzquierda.png");
     private final ImageIcon imagenBotonSeleccionDerecha = new ImageIcon("src/main/resources/imagenesWidgets/flechaSeleccionDerecha.png");
+    private final ImageIcon imagenSeleccion = new ImageIcon("src/main/resources/imagenesWidgets/seleccionando.png");
+    private final ImageIcon imagenListo = new ImageIcon("src/main/resources/imagenesWidgets/listo.png");
     private LecturaPokemons pokemons;
     private List<Pokemon>normalPokemon;
+    private Starter starter;
+    private List<Pokemon>player1Pok;
+    private List<Pokemon>player2Pok;
+    private int index1;
+    private int index2;
+    private boolean ready1;
+    private boolean ready2;
     /**
      * Creates new form SelectionWindow
      */
     public SelectionWindow() 
     {
         initComponents();
+        this.index1=0;
+        this.index2=0;
         this.cardSeparator.setIcon(separator);
         this.botonSeleccionIzquierda1.setIcon(imagenBotonSeleccionDerecha);
         this.botonSeleccionDerecha1.setIcon(imagenBotonSeleccionIzquierda);
         this.botonSeleccionIzquierda2.setIcon(imagenBotonSeleccionDerecha);
         this.botonSeleccionDerecha2.setIcon(imagenBotonSeleccionIzquierda);
+        this.botonListo1.setIcon(imagenSeleccion);
+        this.botonListo2.setIcon(imagenSeleccion);
         this.pokemons = new LecturaPokemons();
         try
         {
@@ -44,6 +58,13 @@ public class SelectionWindow extends javax.swing.JFrame {
             log.error(error,ex);     
         }
         normalPokemon = pokemons.getNormalPokeList();
+        this.starter = new Starter(normalPokemon);
+        this.player1Pok = starter.selectPokemons();
+        this.player2Pok = starter.selectPokemons();
+        this.nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+        this.nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        this.ready1 = false;
+        this.ready2 = false;   
     }
 
     /**
@@ -87,9 +108,41 @@ public class SelectionWindow extends javax.swing.JFrame {
         nombrePokemon2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         nombrePokemon2.setText("jLabel3");
 
-        botonListo1.setText("jLabel1");
+        botonSeleccionIzquierda1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSeleccionIzquierda1MouseClicked(evt);
+            }
+        });
 
-        botonListo2.setText("jLabel1");
+        botonSeleccionDerecha1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSeleccionDerecha1MouseClicked(evt);
+            }
+        });
+
+        botonSeleccionDerecha2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSeleccionDerecha2MouseClicked(evt);
+            }
+        });
+
+        botonSeleccionIzquierda2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonSeleccionIzquierda2MouseClicked(evt);
+            }
+        });
+
+        botonListo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonListo1MouseClicked(evt);
+            }
+        });
+
+        botonListo2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonListo2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,32 +165,27 @@ public class SelectionWindow extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botonListo2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65)))
+                .addGap(40, 40, 40)
                 .addComponent(cardSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jugador2)
-                                .addGap(90, 90, 90))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(73, 73, 73)
-                                        .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(94, 94, 94)
-                                        .addComponent(botonSeleccionDerecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(nombrePokemon2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(botonSeleccionIzquierda1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(160, Short.MAX_VALUE))
+                                .addGap(21, 21, 21)
+                                .addComponent(botonSeleccionDerecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombrePokemon2)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonSeleccionIzquierda1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(botonListo1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(139, 139, 139)
+                        .addComponent(jugador2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(botonListo1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(127, 127, 127)
@@ -152,36 +200,34 @@ public class SelectionWindow extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jugador1)
-                    .addComponent(jugador2))
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonSeleccionIzquierda1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonSeleccionDerecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(nombrePokemon2))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(nombrePokemon1)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(botonListo1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(botonListo2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(cardSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(94, 94, 94)
+                                .addComponent(jugador1)
+                                .addGap(104, 104, 104)
+                                .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(nombrePokemon1)
+                                .addGap(95, 95, 95)
+                                .addComponent(botonListo2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(95, 95, 95)
+                                .addComponent(jugador2)
+                                .addGap(104, 104, 104)
+                                .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonSeleccionIzquierda1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botonSeleccionDerecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(nombrePokemon2)))
+                                .addGap(80, 80, 80)
+                                .addComponent(botonListo1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 141, Short.MAX_VALUE))
+                    .addComponent(cardSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -199,6 +245,97 @@ public class SelectionWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSeleccionIzquierda2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSeleccionIzquierda2MouseClicked
+        this.index1++;
+        if(this.index1<player1Pok.size())
+        {
+            nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+        }
+        else
+        {
+            this.index1=0;
+            nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+        }
+    }//GEN-LAST:event_botonSeleccionIzquierda2MouseClicked
+
+    private void botonSeleccionDerecha2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSeleccionDerecha2MouseClicked
+        this.index1--;
+        if(this.index1>0)
+        {
+            nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+        }
+        else
+        {
+            this.index1=this.player1Pok.size()-1;
+            nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+        }
+    }//GEN-LAST:event_botonSeleccionDerecha2MouseClicked
+
+    private void botonSeleccionIzquierda1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSeleccionIzquierda1MouseClicked
+        this.index2++;
+        if(this.index2<player2Pok.size())
+        {
+            nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        }
+        else
+        {
+            this.index2=0;
+            nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        }
+    }//GEN-LAST:event_botonSeleccionIzquierda1MouseClicked
+
+    private void botonSeleccionDerecha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonSeleccionDerecha1MouseClicked
+        this.index2--;
+        if(this.index2>0)
+        {
+            nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        }
+        else
+        {
+            this.index2=this.player2Pok.size()-1;
+            nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        }
+
+    }//GEN-LAST:event_botonSeleccionDerecha1MouseClicked
+
+    private void botonListo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonListo2MouseClicked
+        if(this.ready2)
+        {
+            ready2=false;
+            this.botonListo2.setIcon(imagenSeleccion);
+        }
+        else
+        {
+            ready2=true;
+            this.botonListo2.setIcon(imagenListo);
+        }
+        if(ready1 && ready2)
+        {
+            CombatWindow cmbW = new CombatWindow(player1Pok.get(index1), player2Pok.get(index2), player1Pok, player2Pok);
+            cmbW.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_botonListo2MouseClicked
+
+    private void botonListo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonListo1MouseClicked
+        if(this.ready1)
+        {
+            ready1=false;
+            this.botonListo1.setIcon(imagenSeleccion);
+        }
+        else
+        {
+            ready1=true;
+            this.botonListo1.setIcon(imagenListo);
+        }
+        if(ready1 && ready2)
+        {
+            CombatWindow cmbW = new CombatWindow(player1Pok.get(index1), player2Pok.get(index2), player1Pok, player2Pok);
+            cmbW.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_botonListo1MouseClicked
 
     /**
      * @param args the command line arguments
