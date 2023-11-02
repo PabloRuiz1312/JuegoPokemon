@@ -4,16 +4,24 @@
  */
 package es.iesjandula.juegopokemon.windows;
 
+import es.iesjandula.juegopokemon.classes.LecturaPokemons;
+import es.iesjandula.juegopokemon.classes.Pokemon;
+import es.iesjandula.juegopokemon.exception.PokemonException;
+import java.util.List;
 import javax.swing.ImageIcon;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 /**
  *
  * @author 2DAM
  */
 public class SelectionWindow extends javax.swing.JFrame {
+    private static Logger log = LogManager.getLogger();
     private final ImageIcon separator = new ImageIcon("src/main/resources/imagenes/separador.png");
     private final ImageIcon imagenBotonSeleccionIzquierda = new ImageIcon("src/main/resources/imagenesWidgets/flechaSeleccionIzquierda.png");
     private final ImageIcon imagenBotonSeleccionDerecha = new ImageIcon("src/main/resources/imagenesWidgets/flechaSeleccionDerecha.png");
+    private LecturaPokemons pokemons;
+    private List<Pokemon>normalPokemon;
     /**
      * Creates new form SelectionWindow
      */
@@ -25,6 +33,17 @@ public class SelectionWindow extends javax.swing.JFrame {
         this.botonSeleccionDerecha1.setIcon(imagenBotonSeleccionIzquierda);
         this.botonSeleccionIzquierda2.setIcon(imagenBotonSeleccionDerecha);
         this.botonSeleccionDerecha2.setIcon(imagenBotonSeleccionIzquierda);
+        this.pokemons = new LecturaPokemons();
+        try
+        {
+            pokemons.readNormalPokemons();
+        }
+        catch(PokemonException ex)
+        {
+            String error = "Error al cargar los pokemons";
+            log.error(error,ex);     
+        }
+        normalPokemon = pokemons.getNormalPokeList();
     }
 
     /**

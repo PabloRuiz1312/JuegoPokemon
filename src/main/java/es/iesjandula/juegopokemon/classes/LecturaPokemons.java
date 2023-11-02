@@ -76,6 +76,7 @@ public class LecturaPokemons
                 ParsePokemon parser = new ParsePokemon(attributes);
                 pokemon = parser.parse();
                 this.normalPokeList.add(pokemon);
+                line = br.readLine();
             }
         }
         catch(FileNotFoundException ex)
@@ -89,6 +90,24 @@ public class LecturaPokemons
             String error = "Error loading pokemons";
             log.fatal(error,ex);
             throw new PokemonException(error,ex);
+        }
+        finally
+        {
+            try
+            {
+                if(br!=null)
+                {
+                    br.close();
+                }
+                if(fr!=null)
+                {
+                    fr.close();
+                }
+            }
+            catch(IOException ex)
+            {
+                log.error("Error closing the pokemon file");
+            }
         }
     }
     @Override

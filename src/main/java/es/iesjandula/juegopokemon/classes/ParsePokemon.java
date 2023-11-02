@@ -2,6 +2,7 @@ package es.iesjandula.juegopokemon.classes;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import es.iesjandula.juegopokemon.exception.PokemonException;
+import java.util.Arrays;
 /**
  *
  * @author Pablo Ruiz Canovas
@@ -31,6 +32,7 @@ public class ParsePokemon
     
     public Pokemon parse() throws PokemonException
     {
+        System.out.println(Arrays.toString(pokemonInfo));
         int id=0;
         String name="";
         String type="";
