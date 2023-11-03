@@ -5,10 +5,12 @@
 package es.iesjandula.juegopokemon.windows;
 
 import es.iesjandula.juegopokemon.classes.Pokemon;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.ImageIcon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import java.lang.Thread;
 
 /**
  *
@@ -22,6 +24,12 @@ public class CombatWindow extends javax.swing.JFrame {
     private Pokemon poke2;
     private List<Pokemon> listaPoke1;
     private List<Pokemon> listaPoke2;
+    private ImageIcon imagen1;
+    private ImageIcon imagen2;
+    private int turno;
+    private int usos1;
+    private int usos2;
+    private int acierto;
     /**
      * Creates new form CombatWindow
      */
@@ -46,6 +54,41 @@ public class CombatWindow extends javax.swing.JFrame {
         this.DamageSpecial2.setText(""+poke2.getSpecialAttackDmg());
         this.nombrePokemon1.setText(poke1.getName());
         this.nombrePokemon2.setText(poke2.getName());
+        this.imagen1 = new ImageIcon(poke1.getImageUrl());
+        this.imagen2 = new ImageIcon(poke2.getImageUrl());
+        this.carta1.setIcon(imagen1);
+        this.carta2.setIcon(imagen2);
+        this.turno = (int)(Math.random()*2+1);
+        this.acierto = 0;
+        //this.informacion.setText("");
+        if(this.poke1.getName().equals("Giratina") || this.poke1.getName().equals("Arceus"))
+        {
+            this.usos1=1;
+        }
+        else
+        {
+            this.usos1=3;
+        }
+        if(this.poke2.getName().equals("Giratina") || this.poke2.getName().equals("Arceus"))
+        {
+            this.usos2=1;
+        }
+        else
+        {
+            this.usos2=3;
+        }
+        if(this.turno==1)
+        {
+            this.turnoJugador.setText("Turno de "+poke1.getName());
+            this.infoUsos.setText("Te quedan "+usos1+" de tu ataque especial");
+        }
+        else
+        {
+            this.turnoJugador.setText("Turno de "+poke2.getName());
+            this.infoUsos.setText("Te quedan "+usos2+" de tu ataque especial");
+        }
+        
+        
         
         
     }
@@ -85,6 +128,8 @@ public class CombatWindow extends javax.swing.JFrame {
         botonAtaqueEspecial = new javax.swing.JLabel();
         botonAtaqueSimple1 = new javax.swing.JLabel();
         turnoJugador = new javax.swing.JLabel();
+        infoUsos = new javax.swing.JLabel();
+        informacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,75 +189,98 @@ public class CombatWindow extends javax.swing.JFrame {
         infpTurnos.setText("Turnos");
 
         botonAtaqueEspecial.setText("jLabel1");
+        botonAtaqueEspecial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAtaqueEspecialMouseClicked(evt);
+            }
+        });
 
         botonAtaqueSimple1.setText("jLabel1");
+        botonAtaqueSimple1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAtaqueSimple1MouseClicked(evt);
+            }
+        });
 
         turnoJugador.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         turnoJugador.setText("jLabel1");
+
+        infoUsos.setText("jLabel1");
+
+        informacion.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        informacion.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
+                .addGap(121, 121, 121)
                 .addComponent(nombrePokemon1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(nombrePokemon2)
                 .addGap(140, 140, 140))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(infoVida1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(HPPoke1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(infoAtaqueF1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DamageSimple1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(infoAtaqueS1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DamageSpecial1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(botonAtaqueSimple1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(botonAtaqueEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(115, 115, 115)
-                                    .addComponent(turnoJugador)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(infpTurnos)
-                                .addGap(150, 150, 150)))
-                        .addGap(98, 98, 98)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(infoAtaqueS2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(DamageSpecial2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(infoVida2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(HPPoke2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(infoAtaqueF2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(DamageSimple2)))
-                                .addGap(4, 4, 4))))
+                        .addComponent(infoVida1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(HPPoke1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-                        .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(infoAtaqueF1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DamageSimple1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(infoAtaqueS1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DamageSpecial1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(botonAtaqueSimple1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(botonAtaqueEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(115, 115, 115)
+                            .addComponent(turnoJugador)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(infpTurnos)
+                        .addGap(169, 169, 169)))
+                .addGap(98, 98, 98)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(infoAtaqueS2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DamageSpecial2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(infoVida2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(HPPoke2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(infoAtaqueF2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DamageSimple2)))
+                        .addGap(4, 4, 4)))
                 .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(388, 388, 388)
+                        .addComponent(infoUsos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(369, 369, 369)
+                        .addComponent(informacion)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,53 +289,246 @@ public class CombatWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombrePokemon1)
                     .addComponent(nombrePokemon2))
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                    .addComponent(carta2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carta1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addComponent(informacion)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(HPPoke1)
-                                .addComponent(infoVida1))
-                            .addGap(12, 12, 12)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(DamageSimple1)
-                                .addComponent(infoAtaqueF1))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(DamageSpecial1)
-                                .addComponent(infoAtaqueS1)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(HPPoke2)
-                                .addComponent(infoVida2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(DamageSimple2)
-                                .addComponent(infoAtaqueF2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(infoAtaqueS2)
-                                .addComponent(DamageSpecial2))
-                            .addGap(16, 16, 16)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(infpTurnos)
-                        .addGap(18, 18, 18)
-                        .addComponent(turnoJugador)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HPPoke2)
+                            .addComponent(infoVida2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DamageSimple2)
+                            .addComponent(infoAtaqueF2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(infoAtaqueS2)
+                            .addComponent(DamageSpecial2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(infpTurnos)
+                                .addGap(18, 18, 18)
+                                .addComponent(turnoJugador))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(HPPoke1)
+                                    .addComponent(infoVida1))
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(DamageSimple1)
+                                    .addComponent(infoAtaqueF1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(DamageSpecial1)
+                                    .addComponent(infoAtaqueS1))))
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonAtaqueSimple1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botonAtaqueEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoUsos)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonAtaqueSimple1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtaqueSimple1MouseClicked
+        int vida = 0;
+        int vidaPoke = 0;
+        int dmg = 0;
+        if(turno==1)
+        {
+            this.acierto = (int)(Math.random()*100+1);
+            this.iteraccion(1000);
+            if(acierto<70)
+            {
+                
+                vida = this.poke2.getHp();
+                vidaPoke = this.poke1.getHp();
+                dmg = this.poke1.getSimpleAttackDmg();
+                vida-=dmg;
+                this.informacion.setText("Impacto "+poke1.getName()+" inflinge "+dmg+" de damage a "+poke2.getName());
+                this.poke2.setHp(vida);
+                this.comprobacionAtaqueFisico(dmg, vidaPoke);
+                
+            }
+            else
+            {
+                this.informacion.setText(poke2.getName()+" esquivo el ataque");
+            }
+            turno=2;
+            this.turnoJugador.setText("Turno de "+poke2.getName());
+            this.infoUsos.setText("Te quedan "+usos2+" de tu ataque especial");
+        }
+        else
+        {
+            this.acierto = (int)(Math.random()*100+1);
+            if(acierto<70)
+            {
+                vida = this.poke1.getHp();
+                vidaPoke = this.poke2.getHp();
+                dmg = this.poke2.getSimpleAttackDmg();
+                vida-=dmg;
+                this.informacion.setText("Impacto "+poke2.getName()+" inflinge "+dmg+" de damage a "+poke1.getName());
+                this.poke1.setHp(vida);
+                this.comprobacionAtaqueFisico(dmg, vidaPoke);
+            }
+            else
+            {
+                this.informacion.setText(poke1.getName()+" esquivo el ataque");
+            }
+            turno=1;
+            this.turnoJugador.setText("Turno de "+poke1.getName());
+            this.infoUsos.setText("Te quedan "+usos1+" de tu ataque especial");
+        }
+        this.actualizarStats();
+    }//GEN-LAST:event_botonAtaqueSimple1MouseClicked
+
+    private void botonAtaqueEspecialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtaqueEspecialMouseClicked
+        int vida = 0;
+        int vidaPoke = 0;
+        int dmg = 0;
+        if(turno==1 && this.usos1>0)
+        {
+            this.acierto = (int)(Math.random()*100+1);
+            if(this.acierto<70)
+            {
+                vida = this.poke2.getHp();
+                vidaPoke = this.poke1.getHp();
+                dmg = this.poke1.getSpecialAttackDmg();
+                vida-=dmg;
+                this.poke2.setHp(vida);
+                this.informacion.setText("Impacto "+poke1.getName()+" inflinge "+dmg+" de damage a "+poke2.getName());
+                this.comprobacionAtaqueEspecial(dmg, vidaPoke);
+                this.usos1--;
+            }
+            else
+            {
+                this.informacion.setText(poke2.getName()+" esquivo el ataque");
+            }
+            turno=2;
+            this.turnoJugador.setText("Turno de "+poke2.getName());
+            this.infoUsos.setText("Te quedan "+usos2+" de tu ataque especial");
+        }
+        else if(this.turno==2 && this.usos2>0)
+        {
+            this.acierto = (int)(Math.random()*100+1);
+            if(this.acierto<70)
+            {
+                vida = this.poke1.getHp();
+                vidaPoke = this.poke2.getHp();
+                dmg = this.poke2.getSpecialAttackDmg();
+                vida-=dmg;
+                this.informacion.setText("Impacto "+poke2.getName()+" inflinge "+dmg+" de damage a "+poke1.getName());
+                this.poke1.setHp(vida);
+                this.comprobacionAtaqueEspecial(dmg, vidaPoke);
+                this.usos2--;
+            }
+            else
+            {
+                this.informacion.setText(poke1.getName()+" esquivo el ataque");
+            }
+            turno=1;
+            this.turnoJugador.setText("Turno de "+poke1.getName());
+            this.infoUsos.setText("Te quedan "+usos1+" de tu ataque especial");
+        }
+        else
+        {
+            this.infoUsos.setText("No te quedan usos!!");
+        }
+        this.actualizarStats();
+    }//GEN-LAST:event_botonAtaqueEspecialMouseClicked
+    
+    private void comprobacionAtaqueFisico(int dmg,int vidaPoke)
+    {
+        if(this.turno==1)
+        {
+            if(this.poke1.getIncDamage1()>0)
+            {
+                dmg+=poke1.getIncDamage1();
+                poke1.setSimpleAttackDmg(dmg);    
+            }
+            if(this.poke1.getHealSimpleAttack()>0)
+            {
+                this.informacion.setText(this.poke1.getName()+" se cura "+poke1.getHealSimpleAttack()+" de vida");
+                this.iteraccion(1000);
+                vidaPoke+=poke1.getHealSimpleAttack();
+                poke1.setHp(vidaPoke);
+                
+            }
+        }
+        else
+        {
+            if(this.poke2.getIncDamage1()>0)
+            {
+                dmg+=poke2.getIncDamage1();
+                poke2.setSimpleAttackDmg(dmg);
+            }
+            if(this.poke2.getHealSimpleAttack()>0)
+            {
+                vidaPoke+=poke2.getHealSimpleAttack();
+                poke2.setHp(vidaPoke);
+            }
+        }
+    }
+    
+    private void comprobacionAtaqueEspecial(int dmg,int vidaPoke)
+    {
+        if(this.turno==1)
+        {
+            if(this.poke1.getIncDamage2()>0)
+            {
+                dmg+=poke1.getIncDamage2();
+                poke1.setSpecialAttackDmg(dmg);
+            }
+            if(this.poke1.getHealSpecialAttack()>0)
+            {
+                vidaPoke+=poke1.getHealSpecialAttack();
+                poke1.setHp(vidaPoke);
+            }
+        }
+        else
+        {
+            if(this.poke2.getIncDamage2()>0)
+            {
+                dmg+=poke2.getIncDamage2();
+                poke2.setSpecialAttackDmg(dmg);
+            }
+            if(this.poke2.getHealSpecialAttack()>0)
+            {
+                vidaPoke+=poke2.getHealSpecialAttack();
+                poke2.setHp(vidaPoke);
+            }
+        }
+    }
+    private void iteraccion(int milisegundos)
+    {
+        try 
+            {
+                Thread.sleep(milisegundos);
+            } catch (InterruptedException ex) 
+            {
+                log.fatal("Error al pausar el programa",ex);
+            }
+    }
+    private void actualizarStats()
+    {
+        this.HPPoke1.setText(""+poke1.getHp());
+        this.HPPoke2.setText(""+poke2.getHp());
+        this.DamageSimple1.setText(""+poke1.getSimpleAttackDmg());
+        this.DamageSimple2.setText(""+poke2.getSimpleAttackDmg());
+        this.DamageSpecial1.setText(""+poke1.getSpecialAttackDmg());
+        this.DamageSpecial2.setText(""+poke2.getSpecialAttackDmg());
+        //this.informacion.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -318,8 +579,10 @@ public class CombatWindow extends javax.swing.JFrame {
     private javax.swing.JLabel infoAtaqueF2;
     private javax.swing.JLabel infoAtaqueS1;
     private javax.swing.JLabel infoAtaqueS2;
+    private javax.swing.JLabel infoUsos;
     private javax.swing.JLabel infoVida1;
     private javax.swing.JLabel infoVida2;
+    private javax.swing.JLabel informacion;
     private javax.swing.JLabel infpTurnos;
     private javax.swing.JLabel nombrePokemon1;
     private javax.swing.JLabel nombrePokemon2;
