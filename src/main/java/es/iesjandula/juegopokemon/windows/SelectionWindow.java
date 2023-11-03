@@ -32,6 +32,8 @@ public class SelectionWindow extends javax.swing.JFrame {
     private int index2;
     private boolean ready1;
     private boolean ready2;
+    private ImageIcon imagenCarta1;
+    private ImageIcon imagenCarta2;
     /**
      * Creates new form SelectionWindow
      */
@@ -63,6 +65,10 @@ public class SelectionWindow extends javax.swing.JFrame {
         this.player2Pok = starter.selectPokemons();
         this.nombrePokemon1.setText(this.player1Pok.get(index1).getName());
         this.nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        this.imagenCarta1 = new ImageIcon(player1Pok.get(index1).getImageUrl());
+        this.imagenCarta2 = new ImageIcon(player2Pok.get(index2).getImageUrl());
+        this.carta1.setIcon(imagenCarta1);
+        this.carta2.setIcon(imagenCarta2);
         this.ready1 = false;
         this.ready2 = false;   
     }
@@ -251,11 +257,15 @@ public class SelectionWindow extends javax.swing.JFrame {
         if(this.index1<player1Pok.size())
         {
             nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+            this.imagenCarta1 = new ImageIcon(player1Pok.get(index1).getImageUrl());
+            this.carta1.setIcon(imagenCarta1);
         }
         else
         {
             this.index1=0;
             nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+            this.imagenCarta1 = new ImageIcon(player1Pok.get(index1).getImageUrl());
+            this.carta1.setIcon(imagenCarta1);
         }
     }//GEN-LAST:event_botonSeleccionIzquierda2MouseClicked
 
@@ -264,11 +274,15 @@ public class SelectionWindow extends javax.swing.JFrame {
         if(this.index1>0)
         {
             nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+            this.imagenCarta1 = new ImageIcon(player1Pok.get(index1).getImageUrl());
+            this.carta1.setIcon(imagenCarta1);
         }
         else
         {
             this.index1=this.player1Pok.size()-1;
             nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+            this.imagenCarta1 = new ImageIcon(player1Pok.get(index1).getImageUrl());
+            this.carta1.setIcon(imagenCarta1);
         }
     }//GEN-LAST:event_botonSeleccionDerecha2MouseClicked
 
@@ -277,11 +291,15 @@ public class SelectionWindow extends javax.swing.JFrame {
         if(this.index2<player2Pok.size())
         {
             nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+            this.imagenCarta2 = new ImageIcon(player2Pok.get(index2).getImageUrl());
+            this.carta2.setIcon(imagenCarta2);
         }
         else
         {
             this.index2=0;
             nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+            this.imagenCarta2 = new ImageIcon(player2Pok.get(index2).getImageUrl());
+            this.carta2.setIcon(imagenCarta2);
         }
     }//GEN-LAST:event_botonSeleccionIzquierda1MouseClicked
 
@@ -290,11 +308,14 @@ public class SelectionWindow extends javax.swing.JFrame {
         if(this.index2>0)
         {
             nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+            this.carta2.setIcon(imagenCarta2);
         }
         else
         {
             this.index2=this.player2Pok.size()-1;
             nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+            this.imagenCarta2 = new ImageIcon(player2Pok.get(index2).getImageUrl());
+            this.carta2.setIcon(imagenCarta2);
         }
 
     }//GEN-LAST:event_botonSeleccionDerecha1MouseClicked
