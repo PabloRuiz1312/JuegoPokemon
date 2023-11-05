@@ -3,19 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package es.iesjandula.juegopokemon.launcher;
-
-import java.awt.Image;
-import javax.swing.Icon;
+import es.iesjandula.juegopokemon.classes.Pokemon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import es.iesjandula.juegopokemon.windows.SelectionWindow;
+import java.awt.Color;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
  * @author Pablo Ruiz Canovas
  */
 public class Launcher extends javax.swing.JFrame {
+    private static Logger log = LogManager.getLogger();
     private ImageIcon mainIcon = null ;
+    private final File file;
     /**
      * Creates new form Launcher
      */
@@ -24,6 +33,8 @@ public class Launcher extends javax.swing.JFrame {
         initComponents();
         this.mainIcon = new ImageIcon("src/main/resources/imagenes/logoPokemon.png");
         this.menuPrincipal.setIcon(mainIcon);
+        file = new File("src/main/resources/partidaGuardada.txt");
+        this.infoError.setText("");
     }
 
     /**
@@ -38,6 +49,7 @@ public class Launcher extends javax.swing.JFrame {
         menuPrincipal = new javax.swing.JLabel();
         playButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        infoError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -54,6 +66,14 @@ public class Launcher extends javax.swing.JFrame {
         });
 
         jButton1.setText("Cargar partida");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        infoError.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        infoError.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,7 +88,10 @@ public class Launcher extends javax.swing.JFrame {
                         .addGap(380, 380, 380)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addComponent(infoError)))
                 .addContainerGap(237, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -80,7 +103,9 @@ public class Launcher extends javax.swing.JFrame {
                 .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(107, 107, 107)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(infoError)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,6 +121,53 @@ public class Launcher extends javax.swing.JFrame {
        window.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_playButtonMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        List<Pokemon>listaPoke1 = null;
+        List<Pokemon>listaPoke2 = null;
+        FileInputStream fis = null;
+        ObjectInputStream ois = null;
+        try
+        {
+            fis = new FileInputStream("src/main/resources/partidaGuardada.txt");
+            ois = new ObjectInputStream(fis);
+            try
+            {
+                while(true)
+                {
+                    listaPoke1 = (List<Pokemon>) ois.readObject();
+                    listaPoke2 = (List<Pokemon>) ois.readObject();
+                }
+            }
+            catch(EOFException ex)
+            {
+                log.info("Partida cargada con exito");
+            }
+            
+            SelectionWindow selection = new SelectionWindow(listaPoke1,listaPoke2);
+            selection.setVisible(true);
+            this.dispose();
+        }
+        catch(ClassNotFoundException ex)
+        {
+            log.error("Error al encontrar la clase lectora",ex);
+            infoError.setText("No existe ninguna partida guardada");
+            infoError.setForeground(Color.getHSBColor(0f,80f, 47f));
+        }
+        catch(FileNotFoundException ex)
+        {
+            log.error("Error al encontrar el fichero",ex);
+            infoError.setText("No existe ninguna partida guardada");
+            infoError.setForeground(Color.getHSBColor(0f,80f, 47f));
+
+        }
+        catch(IOException ex)
+        {
+            log.error("Error al leer el contenido del fichero",ex);
+            infoError.setText("No existe ninguna partida guardada");
+            infoError.setForeground(Color.getHSBColor(0f,80f, 47f));
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -133,6 +205,7 @@ public class Launcher extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel infoError;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel menuPrincipal;
     private javax.swing.JButton playButton;
