@@ -13,6 +13,8 @@ public class Starter
     private static Logger log = LogManager.getLogger();
     /**Pokemon list*/
     private List <Pokemon> pokemons;
+    /**Id pokemon list*/
+    private List <Integer> pokemonId;
     /**
      * Constructor that load all pokemons in the list
      * @param pokemons 
@@ -20,6 +22,7 @@ public class Starter
     public Starter(List<Pokemon>pokemons)
     {
         this.pokemons = pokemons;
+        this.pokemonId = new LinkedList<Integer>();
     }
     /**
      * Getter that return the pokemon list
@@ -36,29 +39,32 @@ public class Starter
     public List<Pokemon> selectPokemons()
     {
         int count = 0;
-        List <Integer> pokemonId = new LinkedList<Integer>();
         List <Pokemon> playPokemon = new LinkedList<Pokemon>();
         int id = 0;
-        while(count<=5)
+        while(count<5)
         {
             if(count==0)
             {
                 id = (int)(Math.random()*this.pokemons.size()+1);
-                for(Pokemon p:this.pokemons)
+                if(!idRepeated(id))
                 {
-                    if(id==p.getId())
+                    for(Pokemon p:this.pokemons)
                     {
-                        playPokemon.add(p);
-                        pokemonId.add(id);
-                        break;
+                        if(id==p.getId())
+                        {
+                            playPokemon.add(p);
+                            this.pokemonId.add(id);
+                            break;
+                        }
                     }
+                    count++;
                 }
-                count++;
+                
             }
             else
             {
                 id = (int)(Math.random()*this.pokemons.size()+1);
-                if(this.idRepeated(id, pokemonId))
+                if(this.idRepeated(id))
                 {
                     count+=0;
                 }
@@ -69,7 +75,7 @@ public class Starter
                         if(id==p.getId())
                         {
                             playPokemon.add(p);
-                            pokemonId.add(id);
+                            this.pokemonId.add(id);
                             break;
                         }
                     }
@@ -86,10 +92,10 @@ public class Starter
      * @param ids
      * @return 
      */
-    private boolean idRepeated(int id,List<Integer>ids)
+    private boolean idRepeated(int id)
     {
         boolean repeat = false;
-        for(Integer i:ids)
+        for(Integer i:this.pokemonId)
         {
             if(i==id)
             {
