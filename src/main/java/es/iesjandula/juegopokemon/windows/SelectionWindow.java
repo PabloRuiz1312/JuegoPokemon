@@ -72,6 +72,29 @@ public class SelectionWindow extends javax.swing.JFrame {
         this.ready1 = false;
         this.ready2 = false;   
     }
+    public SelectionWindow(List<Pokemon>playerPok1,List<Pokemon>playerPok2)
+    {
+        initComponents();
+        this.player1Pok = playerPok1;
+        this.player2Pok = playerPok2;
+        this.index1=0;
+        this.index2=0;
+        this.cardSeparator.setIcon(separator);
+        this.botonSeleccionIzquierda1.setIcon(imagenBotonSeleccionDerecha);
+        this.botonSeleccionDerecha1.setIcon(imagenBotonSeleccionIzquierda);
+        this.botonSeleccionIzquierda2.setIcon(imagenBotonSeleccionDerecha);
+        this.botonSeleccionDerecha2.setIcon(imagenBotonSeleccionIzquierda);
+        this.botonListo1.setIcon(imagenSeleccion);
+        this.botonListo2.setIcon(imagenSeleccion);
+        this.nombrePokemon1.setText(this.player1Pok.get(index1).getName());
+        this.nombrePokemon2.setText(this.player2Pok.get(index2).getName());
+        this.imagenCarta1 = new ImageIcon(player1Pok.get(index1).getImageUrl());
+        this.imagenCarta2 = new ImageIcon(player2Pok.get(index2).getImageUrl());
+        this.carta1.setIcon(imagenCarta1);
+        this.carta2.setIcon(imagenCarta2);
+        this.ready1 = false;
+        this.ready2 = false;   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
