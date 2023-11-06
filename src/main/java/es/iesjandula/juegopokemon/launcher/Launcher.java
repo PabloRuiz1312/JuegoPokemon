@@ -167,6 +167,25 @@ public class Launcher extends javax.swing.JFrame {
             infoError.setText("No existe ninguna partida guardada");
             infoError.setForeground(Color.getHSBColor(0f,80f, 47f));
         }
+        finally
+        {
+            try
+            {
+                if(ois!=null)
+                {
+                    ois.close();
+                }
+                if(fis!=null)
+                {
+                    fis.close();
+                }
+            }
+            catch(IOException ex)
+            {
+                log.error("Error al cerrar el fichero",ex);
+            }
+            
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
